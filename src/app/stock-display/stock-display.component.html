@@ -1,0 +1,25 @@
+<app-search></app-search>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<div id="btnContainer" [ngClass]="{'padding': 'true'}">
+  <button class="btn" [ngClass]="isActive('list')" (click)="listView()">
+    <i class="fa fa-bars"></i> List
+  </button>
+  <button class="btn" [ngClass]="isActive('grid')" (click)="gridView()">
+    <i class="fa fa-th-large"></i> Grid
+  </button>
+  <!-- <div ngbDropdown>
+    <button class="btn btn-primary" id="dropDown">{{this.noOfItemsPerPage}}</button>
+    <div ngbDropdownMenu id="dropDown" *ngFor="let x of this.noOfItemsOption">
+      <button ngbDropdownItem>{{x}}</button>
+
+    </div>
+  </div> -->
+</div>
+
+<br />
+
+<router-outlet></router-outlet>

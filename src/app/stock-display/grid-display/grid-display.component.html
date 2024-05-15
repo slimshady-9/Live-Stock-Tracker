@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="row" *ngIf="!this.loading">
+    <div
+      class="col-6 col-md-3 cardPadding"
+      *ngFor="
+        let item of stocks
+          | paginate
+            : {
+                id: 'pages',
+                itemsPerPage: this.itemsPerPage,
+                currentPage: this.currentPage,
+                totalItems: this.totalItems
+              }
+      "
+    >
+      <div class="card bg-light text-dark cardBackGround" style="width: 15rem">
+        <div class="bg-image hover-overlay"  mdbRipple rippleColor="light">
+          <img src='https://www.gannett-cdn.com/-mm-/b2b05a4ab25f4fca0316459e1c7404c537a89702/c=0-0-1365-768/local/-/media/2018/11/12/USATODAY/usatsports/247WallSt.com-247WS-504731-stock-market.jpg'
+           class="img-fluid"/>
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(62, 4, 4, 0.15);"></div>
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ item.symbol }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted" 
+          [matTooltipDisabled]="disableToolTip(item.description)"
+          matTooltip="{{ item.description }}">{{ item.description | ellipsisPipe}}</h6>
+          <p class="card-text">{{ item.type }}</p>
+          <a
+            href="/stocksDetails/{{ item.symbol }}"
+            class="card-link"
+            (click)="details(item.symbol)"
+            >Details</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="row padding12">
+      <div class="col-3 dropdown">
+        <p class="padding1">Results per page</p>
+        <select class="dropdown1" (change)="itemsPerPageChanged(value)" #value>
+          <option *ngFor="let x of this.itemPerPageOptions" [value]="x">
+            {{ x }}
+          </option>
+        </select>
+  
+        <p class="padding1">of {{ this.totalItems }}</p>
+      </div>
+  
+      <div class="col-3"></div>
+      <div class="col-3"></div>
+      <div class="col-3 pagination">
+        <pagination-controls
+          id="pages"
+          (pageChange)="pageChange($event)"
+          [autoHide]="true"
+          [responsive]="true"
+        ></pagination-controls>
+      </div>
+      </div>
+    </div>
+  </div>
+
+<div class="loading padding" *ngIf="this.loading">
+  <img
+    class="loading"
+    src="../../../assets/images/cupertino_activity_indicator.gif"
+  />
+</div>

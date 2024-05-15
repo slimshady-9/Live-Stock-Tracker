@@ -1,0 +1,158 @@
+<div *ngIf="!this.loading">
+  <table class="table table-stripped tableBorder">
+    <thead>
+      <tr>
+        <th
+          class="col-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3"
+          scope="col"
+          [appSort]="stocks"
+          data-order="desc"
+          data-name="description"
+          data-type="string"
+          #name
+          id="name"
+          (click)="updateDynamicStocks()"
+        >
+          Name {{ sortDirection(name) }}
+        </th>
+        <th
+          class="col-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2"
+          scope="col"
+          [appSort]="stocks"
+          data-order="desc"
+          data-name="symbol"
+          data-type="string"
+          id="symbol"
+          #symbol
+        >
+          Symbol {{ sortDirection(symbol) }}
+        </th>
+
+        <th
+          class="col-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2"
+          scope="col"
+          [appSort]="stocks"
+          data-order="desc"
+          data-name="dailyLow"
+          data-type="string"
+          id="dailyLow"
+          #dailyLow
+        >
+          Daily Low {{ sortDirection(dailyLow) }}
+        </th>
+        <th
+          class="col-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2"
+          scope="col"
+          [appSort]="stocks"
+          data-order="desc"
+          data-name="dailyHigh"
+          data-type="string"
+          id="dailyHigh"
+          #dailyHigh
+        >
+          Daily High {{ sortDirection(dailyHigh) }}
+        </th>
+        <th
+          class="col-2 col-md-2 col-lg-2 col-xl-2 col-xxl-2"
+          scope="col"
+          [appSort]="stocks"
+          data-order="desc"
+          data-name="dailyHigh"
+          data-type="number"
+          id="current"
+          #current
+        >
+          Net Change
+        </th>
+        <th
+          class="col-1 col-md-1 col-lg-1 col-xl-1 col-xxl-1"
+          scope="col"
+          [appSort]="stocks"
+          data-order="desc"
+          data-name="changePercentage"
+          data-type="number"
+          id="gain/loss"
+          #gain
+        >
+          Gain/Loss {{ sortDirection(gain) }}
+        </th>
+      </tr>
+    </thead>
+    <tbody class="tableColor">
+      <tr
+        *ngFor="
+          let stock of stocks
+            | paginate
+              : {
+                  id: 'pages',
+                  itemsPerPage: this.itemsPerPage,
+                  currentPage: this.currentPage,
+                  totalItems: this.totalItems
+                }
+        "
+      >
+        <td
+          class="hover"
+          (click)="openStockDetails(stock.symbol)"
+          [matTooltipDisabled]="disableToolTip(stock.description)"
+          matTooltip="{{ stock.description }}"
+        >
+          {{ stock.description | ellipsisPipe }}
+        </td>
+        <td>{{ stock.symbol }}</td>
+        <td>{{ stock.dailyLow }}</td>
+        <td>{{ stock.dailyHigh }}</td>
+        <td
+          class="text"
+          [ngClass]="{
+            green: stock.change > 0,
+            red: stock.change < 0,
+            black: stock.change === 0
+          }"
+        >
+          {{ stock.change }}
+        </td>
+        <td
+          class="text"
+          [ngClass]="{
+            green: stock.changePercentage > 0,
+            red: stock.changePercentage < 0,
+            black: stock.changePercentage === 0
+          }"
+        >
+          {{ stock.changePercentage }}%
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row">
+    <div class="col-3 dropdown">
+      <p class="padding1">Results per page</p>
+      <select class="dropdown1" (change)="itemsPerPageChanged(value)" #value>
+        <option *ngFor="let x of this.itemPerPageOptions" [value]="x">
+          {{ x }}
+        </option>
+      </select>
+
+      <p class="padding1">of {{ this.totalItems }}</p>
+    </div>
+
+    <div class="col-3"></div>
+    <div class="col-3"></div>
+    <div class="col-3 pagination">
+      <pagination-controls
+        id="pages"
+        (pageChange)="pageChange($event)"
+        (pageBoundsCorrection)="pageBoundCorrection($event)"
+        [autoHide]="true"
+        [responsive]="true"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>
+<div class="loading padding" *ngIf="this.loading">
+  <img
+    class="loading"
+    src="../../../assets/images/cupertino_activity_indicator.gif"
+  />
+</div>

@@ -1,0 +1,52 @@
+<!-- <div class="input-group">
+    <div class="form-outline">
+      <input type="search" id="form1" class="form-control" placeholder="Search" #search/>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="searchStock(search.value)">
+      Search
+    </button>
+  </div> -->
+<div class="container padding">
+  <div class="row">
+    <div class="col-9 col-md-9 col-lg-9 col-xl-9 col-xxl-9">
+      <input
+        type="search"
+        id="form1"
+        class="form-control"
+        placeholder="Search"
+        [(ngModel)]="query"
+        (ngModelChange)="search()"
+        (keydown.enter)="searchStock()"
+      />
+      <div class="dropdown col-8 col-md-8 col-lg-8 col-xl-8 col-xxl-8" *ngIf="this.query.length>0">
+        <div *ngFor="let item of this.temp" class="border">
+          <a href="/stocksDetails/{{ item.symbol }}" class="search">
+            <option>{{ item.description }} ({{ item.symbol }})</option>
+          </a>
+        </div>
+      </div>
+      
+    </div>
+    <div class="col-3 col-md-3 col-lg-3 col-xl-3 col-xxl-3">
+      <button type="button" class="btn btn-primary" (click)="searchStock()">
+        Search
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="searchBar">
+  <div class="bar">
+    <input
+      type="text"
+      [(ngModel)]="query"
+      (ngModelChange)="search()"
+      (keydown.enter)="searchStock()"
+      placeholder="Search"
+    />
+  </div>
+  <ul>
+    <li *ngFor="let item of temp">{{item.description}} ({{item.symbol}})</li>
+  </ul>
+</div> -->

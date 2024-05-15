@@ -1,0 +1,93 @@
+.tableBorder {
+    background-color: whitesmoke;
+    border: 1px;
+    border-radius: 1px;
+
+}
+
+.red {
+    color: red;
+    border-color: black;
+}
+
+.green {
+    color: greenyellow;
+    border-color: black;
+}
+
+.black {
+    color: black;
+}
+
+th,
+td {
+
+    padding: 1em;
+
+}
+
+table {
+    margin-left: 12px;margin-right: 12px
+}
+
+div {
+    
+    overflow-x: hidden;
+}
+
+.hover:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.padding {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.pagination {
+    display: flex;
+    justify-content: right;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+
+}
+
+.loading img {
+    padding-top: 50px;
+    width: 100px;
+}
+
+.text {
+    font-weight: 700;
+
+}
+
+.dropdown {
+    display: flex;
+    justify-content: left;
+
+    padding-left: 25px;
+    
+}
+
+
+.padding1 {
+    padding-left: 12px;
+    padding-right: 10px;
+    padding-top: 10px;
+
+}
+
+.dropdown1 {
+    width: 50px;
+    height: 40px;
+
+    border-radius: 7px;
+    background-color: #2199e8;
+    color: white;
+    padding-left: 5px;
+}

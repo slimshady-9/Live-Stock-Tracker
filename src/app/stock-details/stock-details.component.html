@@ -1,0 +1,65 @@
+<html>
+<div class="p-4 text-center">
+    <h1 class="mb-2">{{profile?.name}}</h1>
+    <h4 class="mb-1">{{"Sector: "+profile?.finnhubIndustry}}</h4>
+  </div>
+
+  <br>
+<div class="row">
+<div class="col-md-6">
+    <div class="card  bg-light align-items-center text-center mb-3">
+        <div class="bg-image hover-overlay padding"  mdbRipple rippleColor="light">
+          <img src={{profile?.logo}}
+            onerror="this.src='https://www.gannett-cdn.com/-mm-/b2b05a4ab25f4fca0316459e1c7404c537a89702/c=0-0-1365-768/local/-/media/2018/11/12/USATODAY/usatsports/247WallSt.com-247WS-504731-stock-market.jpg';"
+           class="img-fluid"/>
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(62, 4, 4, 0.15);"></div>
+          </a>
+        </div>
+        <div class="card-body ">
+          <h2 class="card-title">{{Val}} {{profile?.currency}}</h2>
+          <p class="card-text">Last updated on {{Time}}</p>
+        </div>
+      </div>
+</div>
+<div class="col-md-6">
+    <div class="card bg-light">
+        <div class="card-body">
+            <h3 class="card-title">
+                News
+            </h3>
+    
+            <ul *ngIf = " articles != []">
+                <li *ngFor="let article of articles">
+                    {{article?.headline}}
+                </li>
+            </ul>
+            <h6 *ngIf="articles?.length === 0" class="card-subtitle mb-2 text-muted">
+                No articles related to the asset found</h6>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<div class="d-grid gap-2 d-md-flex justify-content-md-left">
+  <button type="button"
+  class="btn btn-outline-info" (click)="chartType('Line')" >Line </button>
+  <button type="button"
+  class="btn btn-outline-info" (click)="chartType('Bar')" >Bar </button>
+</div>
+<div class="container">
+<app-show-chart 
+[chartData]="cdata"
+[res]="resolution"
+[chartType]="Typech"
+></app-show-chart>
+</div>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button type="button"
+    class="btn btn-outline-primary" (click)="showChart('60')" >D </button>
+    <button type="button"
+    class="btn btn-outline-primary" (click)="showChart('D')" >M </button>
+    <button type="button" 
+    class="btn btn-outline-primary" (click)="showChart('M')">Y </button>
+</div>
+</html>

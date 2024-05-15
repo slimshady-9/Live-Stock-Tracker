@@ -1,0 +1,58 @@
+.card-link{
+    color: black;
+}
+.card-link:hover{
+    cursor: pointer;
+    
+}
+
+.padding{
+    padding-left: 1em;
+}
+
+.loading{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.loading img{
+    padding-top : 50px;
+    width: 100px;
+}
+
+
+.dropdown{
+    display: flex;
+    justify-content: left;
+    margin-top: 1px;
+}
+
+
+.padding1{
+    padding-left: 12px;
+    padding-right : 10px;
+    padding-top : 10px;
+
+}
+.padding12{
+    margin-top: 10px;
+
+}
+.dropdown1{
+    width: 50px;
+    height: 40px;
+  
+    border-radius: 7px;
+    background-color: lightblue;
+}   
+
+
+.cardPadding{
+    padding:10px;
+   
+}
+
+.cardBackGround{
+    background-color: whitesmoke;
+}

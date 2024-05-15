@@ -1,0 +1,19 @@
+.btnContainer {
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #9c9b9b;
+  }
+  
+  .padding{
+    padding-left: 1em;
+  }
+
+  .active{
+    background-color: lightgray;
+  }
