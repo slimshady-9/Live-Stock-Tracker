@@ -13,7 +13,7 @@ const maxSearch = 18;
   providedIn: 'root',
 })
 export class DataFetchService {
-  apiKey: string = "cc851qqad3i03farh1rg";
+  apiKey: string = "";
   url: string = "https://finnhub.io/api/v1/";
   stockSubject = new Subject<Stock>();
   stocks: Stock[] = []
